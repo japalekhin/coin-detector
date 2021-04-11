@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   final List<Coin> coins = [];
+  String appTitle = 'Mint';
 
   @override
   void initState() {
@@ -22,7 +23,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mint'),
+        title: Text(appTitle),
       ),
       body: AnimatedList(
         key: _listKey,
@@ -45,6 +46,7 @@ class HomePageState extends State<HomePage> {
               ),
               child: ListTile(
                 title: Text(coins[index].value),
+                subtitle: Text(coins[index].produced.toIso8601String()),
               ),
             ),
           );
@@ -59,6 +61,9 @@ class HomePageState extends State<HomePage> {
       produced: DateTime.now(),
     );
     coins.insert(0, coin);
+
+    setState(() => appTitle = data);
+
     _listKey.currentState!.insertItem(0, duration: Duration(milliseconds: 350));
 
     if (!kReleaseMode) {
