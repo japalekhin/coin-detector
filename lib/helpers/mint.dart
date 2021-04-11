@@ -3,9 +3,11 @@ import 'dart:math';
 
 class Mint {
   static Random _random = Random();
-  static StreamController<String> _controller = StreamController<String>();
+  static List<String> _coins = [];
+  static StreamController<List<String>> _controller =
+      StreamController<List<String>>.broadcast();
 
-  static Stream<String> get coinProduction => _controller.stream;
+  static Stream<List<String>> get coinProduction => _controller.stream;
 
   static void initialize() {
     Timer.periodic(
@@ -16,10 +18,13 @@ class Mint {
 
   static void generateCoin() {
     bool isAuthentic = _random.nextBool();
+
     if (isAuthentic) {
-      _controller.add('REAL');
+      _coins.add('REAL');
     } else {
-      _controller.add('FAKE');
+      _coins.add('FAKE');
     }
+
+    _controller.add(_coins);
   }
 }
