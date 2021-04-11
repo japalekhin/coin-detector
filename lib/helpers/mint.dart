@@ -3,7 +3,8 @@ import 'dart:math';
 
 class Mint {
   static Random _random = Random();
-  static StreamController<String> _controller = StreamController<String>();
+  static StreamController<String> _controller =
+      StreamController<String>.broadcast();
 
   static Stream<String> get coinProduction => _controller.stream;
 
