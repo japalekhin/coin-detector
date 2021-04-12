@@ -18,9 +18,9 @@ class Mint {
   static void generateCoin() {
     bool isAuthentic = _random.nextBool();
     if (isAuthentic) {
-      _controller.add('REAL');
+      _controller.add('Real');
     } else {
-      _controller.add('FAKE');
+      _controller.add('Fake');
     }
   }
 }

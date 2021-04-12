@@ -44,7 +44,7 @@ class HomePageState extends State<HomePage> {
   }
 
   void onCoinReceived(String data) {
-    if (data == 'REAL') {
+    if (data == 'Real') {
       Sfx.playRealCoin();
     }
 

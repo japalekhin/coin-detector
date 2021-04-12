@@ -120,7 +120,7 @@ class CoinListItemState extends State<CoinListItem>
     if (isExpanded) {
       _expanderAnimationController.reverse();
     } else {
-      if (widget.coin.value == 'REAL') {
+      if (widget.coin.value == 'Real') {
         Sfx.playRealCoin();
       }
       setState(() => isExpanded = true);
