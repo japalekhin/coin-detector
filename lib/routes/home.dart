@@ -22,12 +22,15 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    coins.forEach((Coin coin) {
+    for (int i = 0; i < coins.length; i++) {
+      if (i > 0) {
+        children.add(Divider());
+      }
       children.add(CoinListItem(
-        key: ObjectKey(coin),
-        coin: coin,
+        key: ObjectKey(coins[i]),
+        coin: coins[i],
       ));
-    });
+    }
 
     return Scaffold(
       appBar: AppBar(
