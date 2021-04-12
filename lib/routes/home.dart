@@ -1,5 +1,6 @@
 import 'package:coint_detector/classes/coin.dart';
 import 'package:coint_detector/helpers/mint.dart';
+import 'package:coint_detector/helpers/sfx.dart';
 import 'package:coint_detector/widgets/coin-list-item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -43,13 +44,17 @@ class HomePageState extends State<HomePage> {
   }
 
   void onCoinReceived(String data) {
+    if (data == 'REAL') {
+      Sfx.playRealCoin();
+    }
+
+    final Coin coin = Coin(
+      value: data,
+      produced: DateTime.now(),
+    );
+
     setState(() {
       appTitle = data;
-
-      final Coin coin = Coin(
-        value: data,
-        produced: DateTime.now(),
-      );
       coins.insert(0, coin);
     });
 

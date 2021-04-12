@@ -1,4 +1,5 @@
 import 'package:coint_detector/classes/coin.dart';
+import 'package:coint_detector/helpers/sfx.dart';
 import 'package:flutter/material.dart';
 
 class CoinListItem extends StatefulWidget {
@@ -119,6 +120,9 @@ class CoinListItemState extends State<CoinListItem>
     if (isExpanded) {
       _expanderAnimationController.reverse();
     } else {
+      if (widget.coin.value == 'REAL') {
+        Sfx.playRealCoin();
+      }
       setState(() => isExpanded = true);
       _expanderAnimationController.forward();
     }
