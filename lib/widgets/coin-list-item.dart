@@ -2,6 +2,12 @@ import 'package:coint_detector/classes/coin.dart';
 import 'package:flutter/material.dart';
 
 class CoinListItem extends StatefulWidget {
+  final Duration appearanceAnimationDuration = const Duration(
+    milliseconds: 500,
+  );
+  final Duration expanderAnimationDuration = const Duration(
+    milliseconds: 250,
+  );
   final Coin coin;
 
   const CoinListItem({
@@ -17,13 +23,13 @@ class CoinListItemState extends State<CoinListItem>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   late final AnimationController _expanderAnimationController =
       AnimationController(
-    duration: Duration(milliseconds: 250),
+    duration: widget.expanderAnimationDuration,
     vsync: this,
   );
 
   late final AnimationController _appearanceAnimationController =
       AnimationController(
-    duration: const Duration(milliseconds: 500),
+    duration: widget.appearanceAnimationDuration,
     vsync: this,
   );
   late final Animation<Offset> _slideAnimation = Tween(
@@ -51,15 +57,31 @@ class CoinListItemState extends State<CoinListItem>
     super.build(context);
 
     List<Widget> children = [];
-    children.add(Text(widget.coin.value));
+    children.add(
+      Text(
+        widget.coin.value,
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
     if (isExpanded) {
       children.add(
         SizeTransition(
           sizeFactor: _expanderAnimationController,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 12),
-              Text(widget.coin.produced.toIso8601String()),
+              Center(
+                child: Text(
+                  widget.coin.produced.toIso8601String(),
+                  style: TextStyle(
+                    color: Color(0xff888888),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -75,6 +97,7 @@ class CoinListItemState extends State<CoinListItem>
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: children,
               ),
             ),
