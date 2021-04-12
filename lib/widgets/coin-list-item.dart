@@ -14,17 +14,23 @@ class CoinListItem extends StatefulWidget {
 }
 
 class CoinListItemState extends State<CoinListItem>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  late final AnimationController _animationController = AnimationController(
-    duration: const Duration(milliseconds: 500),
+    with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
+  late final AnimationController _expanderAnimationController =
+      AnimationController(
+    duration: Duration(milliseconds: 250),
     vsync: this,
   );
 
+  late final AnimationController _appearanceAnimationController =
+      AnimationController(
+    duration: const Duration(milliseconds: 500),
+    vsync: this,
+  );
   late final Animation<Offset> _slideAnimation = Tween(
     begin: Offset(.75, 0),
     end: Offset.zero,
   ).animate(CurvedAnimation(
-    parent: _animationController,
+    parent: _appearanceAnimationController,
     curve: Curves.linearToEaseOut,
   ));
 
@@ -35,7 +41,8 @@ class CoinListItemState extends State<CoinListItem>
 
   @override
   void initState() {
-    _animationController.forward();
+    _appearanceAnimationController.forward();
+    _expanderAnimationController.addListener(onExpanderAnimation);
     super.initState();
   }
 
@@ -46,12 +53,21 @@ class CoinListItemState extends State<CoinListItem>
     List<Widget> children = [];
     children.add(Text(widget.coin.value));
     if (isExpanded) {
-      children.add(SizedBox(height: 8));
-      children.add(Text(widget.coin.produced.toIso8601String()));
+      children.add(
+        SizeTransition(
+          sizeFactor: _expanderAnimationController,
+          child: Column(
+            children: [
+              SizedBox(height: 12),
+              Text(widget.coin.produced.toIso8601String()),
+            ],
+          ),
+        ),
+      );
     }
 
     return FadeTransition(
-      opacity: _animationController,
+      opacity: _appearanceAnimationController,
       child: SlideTransition(
         position: _slideAnimation,
         child: Container(
@@ -71,11 +87,23 @@ class CoinListItemState extends State<CoinListItem>
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _appearanceAnimationController.dispose();
+    _expanderAnimationController.dispose();
     super.dispose();
   }
 
   void onTap() {
-    setState(() => isExpanded = !isExpanded);
+    if (isExpanded) {
+      _expanderAnimationController.reverse();
+    } else {
+      setState(() => isExpanded = true);
+      _expanderAnimationController.forward();
+    }
+  }
+
+  void onExpanderAnimation() {
+    if (_expanderAnimationController.status == AnimationStatus.dismissed) {
+      setState(() => isExpanded = false);
+    }
   }
 }
