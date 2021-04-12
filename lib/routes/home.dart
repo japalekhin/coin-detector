@@ -1,7 +1,7 @@
-import 'package:coint_detector/classes/coin.dart';
-import 'package:coint_detector/helpers/mint.dart';
-import 'package:coint_detector/helpers/sfx.dart';
-import 'package:coint_detector/widgets/coin-list-item.dart';
+import 'package:coin_detector/classes/coin.dart';
+import 'package:coin_detector/helpers/mint.dart';
+import 'package:coin_detector/helpers/sfx.dart';
+import 'package:coin_detector/widgets/coin-list-item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

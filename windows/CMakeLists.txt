@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(coint_detector LANGUAGES CXX)
+project(coin_detector LANGUAGES CXX)
 
-set(BINARY_NAME "coint_detector")
+set(BINARY_NAME "coin_detector")
 
 cmake_policy(SET CMP0063 NEW)
 

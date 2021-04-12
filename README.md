@@ -1,4 +1,4 @@
-# coint_detector
+# coin_detector
 
 A new Flutter project.
 

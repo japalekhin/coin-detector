@@ -1,5 +1,5 @@
-import 'package:coint_detector/classes/coin.dart';
-import 'package:coint_detector/helpers/sfx.dart';
+import 'package:coin_detector/classes/coin.dart';
+import 'package:coin_detector/helpers/sfx.dart';
 import 'package:flutter/material.dart';
 
 class CoinListItem extends StatefulWidget {

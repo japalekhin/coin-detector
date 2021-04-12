@@ -1,4 +1,4 @@
-import 'package:coint_detector/routes/home.dart';
+import 'package:coin_detector/routes/home.dart';
 import 'package:flutter/material.dart';
 
 class CoinDetectorApp extends StatefulWidget {

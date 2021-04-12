@@ -92,10 +92,10 @@ BEGIN
             VALUE "CompanyName", "io.alekhin.flutterassessment" "\0"
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "coint_detector" "\0"
+            VALUE "InternalName", "coin_detector" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2021 io.alekhin.flutterassessment. All rights reserved." "\0"
-            VALUE "OriginalFilename", "coint_detector.exe" "\0"
-            VALUE "ProductName", "coint_detector" "\0"
+            VALUE "OriginalFilename", "coin_detector.exe" "\0"
+            VALUE "ProductName", "coin_detector" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
