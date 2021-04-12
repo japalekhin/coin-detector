@@ -8,10 +8,10 @@ class Sfx {
     ),
   );
 
-  static void playRealCoin() async {
+  static void playRealCoin({double volume = .75}) async {
     _coinPlayer.play(
       'audio/sfx/score-clay-coin.mp3',
-      volume: .75,
+      volume: volume,
     );
   }
 }

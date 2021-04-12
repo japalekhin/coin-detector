@@ -8,6 +8,9 @@ class Mint {
 
   static Stream<String> get coinProduction => _controller.stream;
 
+  /// A method that starts a timer to produce coins.
+  ///
+  /// Call this method once when the app runs.
   static void initialize() {
     Timer.periodic(
       Duration(seconds: 2),
